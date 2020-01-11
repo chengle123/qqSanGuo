@@ -1,17 +1,26 @@
 {
-	"description": "项目配置文件。",
+	"projectid": "1110127299_QQ%E4%B8%89%E5%9B%BD%E5%8D%8E%E5%AE%B9%E9%81%93",
 	"setting": {
 		"urlCheck": false,
 		"es6": true,
 		"postcss": true,
 		"minified": true,
-		"newFeature": true
+		"newFeature": true,
+		"remoteDebugLogEnable": false,
+		"uploadWithSourceMap": true,
+		"nodeModules": true,
+		"autoAudits": false,
+		"uglifyFileName": true
 	},
 	"compileType": "game",
 	"libVersion": "1.9.94",
-	"appid": "wx5dcb7161710465c8",
 	"projectname": "QQ%E4%B8%89%E5%9B%BD%E5%8D%8E%E5%AE%B9%E9%81%93",
 	"qqappid": "1110127299",
+	"scripts": {
+		"beforeCompile": "",
+		"beforePreview": "",
+		"beforeUpload": ""
+	},
 	"condition": {
 		"search": {
 			"current": -1,

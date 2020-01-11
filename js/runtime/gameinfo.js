@@ -23,6 +23,15 @@ const PUZZLE_HARD_SRC = 'images/puzzle-hard.jpg'
 const PUZZLE_HARD_WIDTH = 1000
 const PUZZLE_HARD_HEIGHT = 1000
 
+// 结束菜单
+const IMG_OVER_SRC = 'images/over.png'
+const IMG_OVER_WIDTH = 800
+const IMG_OVER_HEIGHT = 500
+
+const IMG_SHARE_SRC = 'images/share.png'
+const IMG_SHARE_WIDTH = 300
+const IMG_SHARE_HEIGHT = 200
+
 // 菜单图片
 const IMG_START_SRC = 'images/start.png'
 const IMG_START_WIDTH = 800
@@ -42,7 +51,7 @@ const IMG_HARD_HEIGHT = 200
 
 const IMG_TIME_SRC = 'images/time_bg.png'
 const IMG_TIME_WIDTH = 400
-const IMG_TIME_HEIGHT = 200
+const IMG_TIME_HEIGHT = 300
 
 const IMG_HELP_SRC = 'images/help.png'
 const IMG_HELP_WIDTH = 300
@@ -105,6 +114,32 @@ export default class GameInfo {
       (databus.screenHeight - btnRatio * IMG_HARD_HEIGHT) / 2 + btnRatio * IMG_HARD_HEIGHT * 1.5,
       btnRatio * IMG_HARD_WIDTH,
       btnRatio * IMG_HARD_HEIGHT
+    )
+
+    // 分享菜单背景
+    let imgOverRatio = (databus.screenWidth * 0.8) / IMG_OVER_WIDTH
+    this.imgOver = new Button(
+      IMG_OVER_SRC,
+      (databus.screenWidth - imgOverRatio * IMG_OVER_WIDTH) / 2,
+      (databus.screenHeight - imgOverRatio * IMG_OVER_HEIGHT) / 2,
+      imgOverRatio * IMG_OVER_WIDTH,
+      imgOverRatio * IMG_OVER_HEIGHT
+    )
+    // 分享菜单按钮
+    let btnShareRatio = (databus.screenWidth * 0.15) / IMG_SHARE_WIDTH
+    this.btnShare = new Button(
+      IMG_SHARE_SRC,
+      (databus.screenWidth - btnShareRatio * IMG_SHARE_WIDTH)/3,
+      databus.contentPaddingTop - btnShareRatio + IMG_SHARE_HEIGHT/4,
+      btnShareRatio * IMG_SHARE_WIDTH,
+      btnShareRatio * IMG_SHARE_HEIGHT
+    )
+    this.btnReplay1 = new Button(
+      IMG_REPLAY_SRC,
+      (databus.screenWidth - btnShareRatio * IMG_REPLAY_WIDTH) / 1.5,
+      databus.contentPaddingTop - btnShareRatio + IMG_SHARE_HEIGHT/4,
+      btnShareRatio * IMG_REPLAY_WIDTH,
+      btnShareRatio * IMG_REPLAY_HEIGHT
     )
 
     // 时间块
@@ -182,7 +217,7 @@ export default class GameInfo {
       databus.stage = 3
       databus.gameStart = true
       databus.puzzleImg = {
-        src: PUZZLE_EASY_SRC,
+        src: `images/${Math.floor(Math.random()*15)+1}.jpg`,//PUZZLE_EASY_SRC,
         width: PUZZLE_EASY_WIDTH,
         height: PUZZLE_EASY_HEIGHT
       }
@@ -190,7 +225,7 @@ export default class GameInfo {
       databus.stage = 4
       databus.gameStart = true
       databus.puzzleImg = {
-        src: PUZZLE_MIDDLE_SRC,
+        src: `images/${Math.floor(Math.random()*15)+1}.jpg`,//PUZZLE_MIDDLE_SRC,
         width: PUZZLE_MIDDLE_WIDTH,
         height: PUZZLE_MIDDLE_HEIGHT
       }
@@ -198,7 +233,7 @@ export default class GameInfo {
       databus.stage = 5
       databus.gameStart = true
       databus.puzzleImg = {
-        src: PUZZLE_HARD_SRC,
+        src: `images/${Math.floor(Math.random()*15)+1}.jpg`,//PUZZLE_HARD_SRC,
         width: PUZZLE_HARD_WIDTH,
         height: PUZZLE_HARD_HEIGHT
       }
@@ -237,6 +272,11 @@ export default class GameInfo {
       return
     }
 
+    if (this.btnReplay1.isTapped(event.x, event.y)) {
+      databus.reset()
+      return
+    }
+
     if (this.btnHelp.isTapped(event.x, event.y)) {
       databus.showHelp = true
       return
@@ -245,11 +285,29 @@ export default class GameInfo {
     if (this.btnHint.isTapped(event.x, event.y)) {
       databus.showHint = true
     }
+
   }
 
   tapGameOver (event) {
     if (this.btnReplay.isTapped(event.x, event.y)) {
       databus.reset()
+    }
+    if (this.btnReplay1.isTapped(event.x, event.y)) {
+      databus.reset()
+    }
+    if (this.btnShare.isTapped(event.x, event.y)) {
+      qq.shareAppMessage({
+        title: '我在' + databus.finalTime + '内完成了华容道！快来挑战我啊！',
+        imageUrl: `images/fenxiang.jpg`,
+        success: function (res) {
+          console.log('拉起分享 成功');
+          console.log(res);
+        },
+        fail: function (res) {
+          console.log('拉起分享 失败');
+          console.log(res);
+        }
+      });
     }
   }
 
@@ -260,6 +318,7 @@ export default class GameInfo {
     if (!databus.gameOver) {
       return this.renderGamePlaying(ctx)
     }
+    
     return this.renderGameOver(ctx)
   }
 
@@ -269,7 +328,6 @@ export default class GameInfo {
     ctx.globalAlpha = 0.6
     ctx.fillRect(0, 0, databus.screenWidth, databus.screenHeight)
     ctx.globalAlpha = 1
-
     this.imgStart.render(ctx)
     this.btnEasy.render(ctx)
     this.btnMiddle.render(ctx)
@@ -317,20 +375,29 @@ export default class GameInfo {
       databus.contentWidth
     )
 
-    this.btnReplay.render(ctx)
+    
+    ctx.fillStyle = 'black'
+    ctx.globalAlpha = 0.6
+    ctx.fillRect(0, 0, databus.screenWidth, databus.screenHeight)
+    ctx.globalAlpha = 1
+    
 
     // 绘制半透明背景
     ctx.fillStyle = 'black'
     ctx.globalAlpha = 0.6
-    ctx.fillRect(databus.contentPadding, databus.contentPaddingTop, databus.contentWidth, 50)
+    ctx.fillRect(0, 0, databus.screenWidth, databus.screenHeight)
     ctx.globalAlpha = 1
+    
+    this.imgOver.render(ctx);
+    this.btnShare.render(ctx);
+    this.btnReplay1.render(ctx);
 
     ctx.fillStyle = '#ffffff'
     ctx.font = '18px Arial'
     ctx.fillText(
       '恭喜！您用' + databus.finalTime + '完成了拼图！',
-      databus.contentPadding + 10,
-      databus.contentPaddingTop + 30
+        databus.screenWidth/4.5,
+        databus.contentPaddingTop 
     )
   }
 }
