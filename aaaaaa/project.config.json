@@ -3,15 +3,26 @@
 	"setting": {
 		"urlCheck": false,
 		"es6": true,
-		"postcss": true,
+		"postcss": false,
 		"minified": true,
-		"newFeature": true
+		"newFeature": true,
+		"remoteDebugLogEnable": false,
+		"uploadWithSourceMap": false,
+		"nodeModules": true,
+		"autoAudits": false,
+		"uglifyFileName": false
 	},
 	"compileType": "game",
 	"libVersion": "1.9.94",
 	"appid": "wx5dcb7161710465c8",
-	"projectname": "%E4%B8%89%E5%9B%BD%E5%8D%8E%E5%AE%B9%E9%81%93",
-	"qqappid": "1110127299",
+	"projectname": "aaa",
+	"qqappid": "1108245641",
+	"scripts": {
+		"beforeCompile": "",
+		"beforePreview": "",
+		"beforeUpload": ""
+	},
+	"qqLibVersion": "1.10.1",
 	"condition": {
 		"search": {
 			"current": -1,

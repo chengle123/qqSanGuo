@@ -62,7 +62,7 @@
 	    _window.document.removeEventListener(type, listener)
 	  }
 
-	  var _wx$getSystemInfoSync = qq.getSystemInfoSync(),
+	  var _wx$getSystemInfoSync = wx.getSystemInfoSync(),
 	      platform = _wx$getSystemInfoSync.platform
 
 	  // 开发者工具无法重定义 window
@@ -218,7 +218,7 @@
 	  value: true
 	})
 
-	var _wx$getSystemInfoSync = qq.getSystemInfoSync(),
+	var _wx$getSystemInfoSync = wx.getSystemInfoSync(),
 	    screenWidth = _wx$getSystemInfoSync.screenWidth,
 	    screenHeight = _wx$getSystemInfoSync.screenHeight,
 	    devicePixelRatio = _wx$getSystemInfoSync.devicePixelRatio
@@ -616,7 +616,7 @@
 	var hasInitWebGLContextConstructor = false
 
 	function Canvas() {
-	  var canvas = qq.createCanvas()
+	  var canvas = wx.createCanvas()
 
 	  canvas.type = 'canvas'
 
@@ -780,7 +780,7 @@
 	})
 	exports.default = Image
 	function Image() {
-	  var image = qq.createImage()
+	  var image = wx.createImage()
 
 	  return image
 	}
@@ -838,7 +838,7 @@
 
 	    _src.set(_this, '')
 
-	    var innerAudioContext = qq.createInnerAudioContext()
+	    var innerAudioContext = wx.createInnerAudioContext()
 
 	    _innerAudioContext.set(_this, innerAudioContext)
 
@@ -1103,10 +1103,10 @@
 	  }
 	}
 
-	qq.onTouchStart(touchEventHandlerFactory('touchstart'))
-	qq.onTouchMove(touchEventHandlerFactory('touchmove'))
-	qq.onTouchEnd(touchEventHandlerFactory('touchend'))
-	qq.onTouchCancel(touchEventHandlerFactory('touchcancel'))
+	wx.onTouchStart(touchEventHandlerFactory('touchstart'))
+	wx.onTouchMove(touchEventHandlerFactory('touchmove'))
+	wx.onTouchEnd(touchEventHandlerFactory('touchend'))
+	wx.onTouchCancel(touchEventHandlerFactory('touchcancel'))
 
 /***/ }),
 /* 17 */
@@ -1121,7 +1121,7 @@
 	var _util = __webpack_require__(8)
 
 	// TODO 需要 wx.getSystemInfo 获取更详细信息
-	var _wx$getSystemInfoSync = qq.getSystemInfoSync(),
+	var _wx$getSystemInfoSync = wx.getSystemInfoSync(),
 	    platform = _wx$getSystemInfoSync.platform
 
 	var navigator = {
@@ -1253,7 +1253,7 @@
 	      if (this.readyState !== XMLHttpRequest.OPENED) {
 	        throw new Error("Failed to execute 'send' on 'XMLHttpRequest': The object's state must be OPENED.")
 	      } else {
-	        qq.request({
+	        wx.request({
 	          data: data,
 	          url: _url.get(this),
 	          method: _method.get(this),
@@ -1373,7 +1373,7 @@
 	    this.url = url
 	    this.readyState = WebSocket.CONNECTING
 
-	    var socketTask = qq.connectSocket({
+	    var socketTask = wx.connectSocket({
 	      url: url,
 	      protocols: Array.isArray(protocols) ? protocols : [protocols]
 	    })
@@ -1481,29 +1481,29 @@
 	})
 	var localStorage = {
 	  get length() {
-	    var _wx$getStorageInfoSyn = qq.getStorageInfoSync(),
+	    var _wx$getStorageInfoSyn = wx.getStorageInfoSync(),
 	        keys = _wx$getStorageInfoSyn.keys
 
 	    return keys.length
 	  },
 
 	  key: function key(n) {
-	    var _wx$getStorageInfoSyn2 = qq.getStorageInfoSync(),
+	    var _wx$getStorageInfoSyn2 = wx.getStorageInfoSync(),
 	        keys = _wx$getStorageInfoSyn2.keys
 
 	    return keys[n]
 	  },
 	  getItem: function getItem(key) {
-	    return qq.getStorageSync(key)
+	    return wx.getStorageSync(key)
 	  },
 	  setItem: function setItem(key, value) {
-	    return qq.setStorageSync(key, value)
+	    return wx.setStorageSync(key, value)
 	  },
 	  removeItem: function removeItem(key) {
-	    qq.removeStorageSync(key)
+	    wx.removeStorageSync(key)
 	  },
 	  clear: function clear() {
-	    qq.clearStorageSync()
+	    wx.clearStorageSync()
 	  }
 	}
 

@@ -214,6 +214,7 @@ export default class GameInfo {
 
   tapGameStart (event) {
     if (this.btnEasy.isTapped(event.x, event.y)) {
+      console.log(123)
       databus.stage = 3
       databus.gameStart = true
       databus.puzzleImg = {
@@ -268,6 +269,7 @@ export default class GameInfo {
     }
 
     if (this.btnReplay.isTapped(event.x, event.y)) {
+      console.log(123)
       databus.reset()
       return
     }
@@ -374,13 +376,6 @@ export default class GameInfo {
       databus.contentWidth,
       databus.contentWidth
     )
-
-    
-    ctx.fillStyle = 'black'
-    ctx.globalAlpha = 0.6
-    ctx.fillRect(0, 0, databus.screenWidth, databus.screenHeight)
-    ctx.globalAlpha = 1
-    
 
     // 绘制半透明背景
     ctx.fillStyle = 'black'

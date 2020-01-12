@@ -24,12 +24,13 @@ export default class Main {
 
     databus.reset()
 
+
     window.requestAnimationFrame(
       this.loop.bind(this),
       databus.pieces.forEach((item, position) => {
         item.render(ctx)
       })
-    )
+    );
   }
 
   /**
@@ -98,7 +99,6 @@ export default class Main {
     })
     this.gameInfo.render(ctx)
   }
-
   // 游戏逻辑更新主函数
   update () {
     // 统计是否有动画正在播放
@@ -114,16 +114,14 @@ export default class Main {
     if (!isAniPlaying) {
       this.checkGameOver()
     }
-  }
-
+  };
   // 实现游戏帧循环
   loop () {
-    this.update()
-    this.render()
-
-    window.requestAnimationFrame(
-      this.loop.bind(this),
-      canvas
-    )
+      this.update()
+      this.render()
+      window.requestAnimationFrame(
+        this.loop.bind(this),
+        canvas
+      )
   }
 }
