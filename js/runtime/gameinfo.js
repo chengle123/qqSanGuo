@@ -214,7 +214,7 @@ export default class GameInfo {
 
   tapGameStart (event) {
     if (this.btnEasy.isTapped(event.x, event.y)) {
-      console.log(123)
+      // console.log(123)
       databus.stage = 3
       databus.gameStart = true
       databus.puzzleImg = {
@@ -269,7 +269,7 @@ export default class GameInfo {
     }
 
     if (this.btnReplay.isTapped(event.x, event.y)) {
-      console.log(123)
+      // console.log(123)
       databus.reset()
       return
     }
@@ -300,7 +300,7 @@ export default class GameInfo {
     if (this.btnShare.isTapped(event.x, event.y)) {
       qq.shareAppMessage({
         title: '我在' + databus.finalTime + '内完成了华容道！快来挑战我啊！',
-        imageUrl: `images/fenxiang.jpg`,
+        imageUrl: `images/fenxiagn.png`,
         success: function (res) {
           console.log('拉起分享 成功');
           console.log(res);

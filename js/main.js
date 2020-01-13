@@ -31,6 +31,22 @@ export default class Main {
         item.render(ctx)
       })
     );
+
+    
+    // let BannerAd = qq.createBannerAd({
+    //   style: {
+    //     left: 0,
+    //     top: 0,
+    //     width: window.innerWidth-80,
+    //     height: 200
+    //   },
+    //   testDemoType: 194
+    // });
+    // BannerAd.onLoad((data)=>{
+    //   console.log('载入广告')
+    //   BannerAd.show();
+    // });
+
   }
 
   /**
