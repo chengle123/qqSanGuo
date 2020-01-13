@@ -5,6 +5,7 @@ import Button from '../base/button'
 import Piece from '../models/piece'
 import GameMap from '../runtime/gameMap'
 
+
 let databus = new DataBus()
 let gameMap = new GameMap()
 
@@ -213,6 +214,20 @@ export default class GameInfo {
   }
 
   tapGameStart (event) {
+    this.BannerAd = qq.createBannerAd({
+      adUnitId:'',
+      style: {
+        left: 0,
+        top: 60,
+        width: window.innerWidth-90,
+        height: 200
+      },
+      testDemoType: 194
+    });
+    this.BannerAd.onLoad((data)=>{
+      console.log('载入广告')
+      this.BannerAd.show();
+    });
     if (this.btnEasy.isTapped(event.x, event.y)) {
       // console.log(123)
       databus.stage = 3

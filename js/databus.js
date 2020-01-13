@@ -23,6 +23,7 @@ export default class DataBus {
     this.contentPadding = (this.screenWidth - this.contentWidth) / 2
     this.contentPaddingTop = this.screenHeight - this.contentWidth - this.contentPadding
     this.puzzleImg = null
+    this.BannerAd;
 
     this.reset()
   }

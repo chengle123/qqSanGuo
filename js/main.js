@@ -7,12 +7,13 @@ import DataBus from './databus'
 
 let ctx = canvas.getContext('2d')
 let databus = new DataBus()
-
 /**
  * 游戏主函数
  */
 export default class Main {
   constructor () {
+
+    
     this.bg = new BackGround(ctx)
     this.gameInfo = new GameInfo()
 
@@ -22,31 +23,33 @@ export default class Main {
       this.movePieces(e.direction)
     })
 
+    qq.onHide(()=>{
+      console.log('切换后台')
+      this.BannerAd.hide();
+      this.BannerAd.destroy();
+      window.cancelAnimationFrame();
+    })    
+    qq.onShow(()=>{
+      console.log('切换前台');
+      this.init ();
+    })
+      // let AppBox = qq.createAppBox({adUnitId:'07c0b3bcce2ee47bb1b2a334492c47ed'});
+      // AppBox.load(()=>{
+      //   console.log(1111)
+      //   AppBox.show();
+      // })
+  }
+
+  init (){
+
     databus.reset()
-
-
+    
     window.requestAnimationFrame(
       this.loop.bind(this),
       databus.pieces.forEach((item, position) => {
         item.render(ctx)
       })
     );
-
-    
-    // let BannerAd = qq.createBannerAd({
-    //   style: {
-    //     left: 0,
-    //     top: 0,
-    //     width: window.innerWidth-80,
-    //     height: 200
-    //   },
-    //   testDemoType: 194
-    // });
-    // BannerAd.onLoad((data)=>{
-    //   console.log('载入广告')
-    //   BannerAd.show();
-    // });
-
   }
 
   /**
